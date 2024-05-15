@@ -4,5 +4,7 @@ export type TProduct = {
     price: string,
     discount?: string,
     image: string,
-    description : string
+    description : string,
+    sell?: string,
+    isDiscount?:boolean
 }

@@ -23,6 +23,8 @@ const createUserIntoDB = async(file:any,user: TUser)=>{
      const result = await User.create(userData);
      return result
 }
+
+
 export const userServices = {
     createUserIntoDB
 }
