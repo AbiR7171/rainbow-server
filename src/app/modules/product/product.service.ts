@@ -19,7 +19,27 @@ const getAllProductsFromDB = async() =>{
     return result
  }
 
+ const getSearchProductFromDB = async(search:string) =>{
+       const result = await Product.find({productName: {$regex:search, $options:"i"}});
+       return result;
+ }
+
+ const getSingleProductFromDB = async(id:string)=>{
+       const result = await Product.findById({_id: id});
+       return result
+ }
+
+ const editProductFromDB = async(id:string,product:TProduct) =>{
+        const result = await Product.findByIdAndUpdate(id, product, {
+            new:true
+        })
+        return result
+ }
+
 export  const productServices = {
     createProductIntoDB,
-    getAllProductsFromDB
+    getAllProductsFromDB,
+    getSearchProductFromDB,
+    editProductFromDB,
+    getSingleProductFromDB
 }

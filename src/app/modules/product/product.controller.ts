@@ -46,7 +46,77 @@ const getAllProduct = async(req: Request, res:Response)=>{
   }
 }
 
+const getSearchProduct = async(req:Request, res: Response)=>{
+    try {
+        const {search} = req.query;
+        const result =await productServices.getSearchProductFromDB(search as string);
+        res.status(200).json(
+          {
+              success: true,
+              message:"Search product find successfully",
+              data:result
+          }
+      )
+    } catch (error: any) {
+      res.status(500).json(
+        {
+            success: false,
+            message: error.message ||"something went wrong",
+            data:error 
+        }
+      )
+    }
+}
+
+const getSingleProduct = async(req:Request, res:Response)=>{
+    try {
+      const productId = req.params.id;
+      const result= await productServices.getSingleProductFromDB(productId);
+      res.status(200).json(
+        {
+            success: true,
+            message:"Product find successfully",
+            data:result
+        }
+    )
+    } catch (error : any) {
+      res.status(500).json(
+        {
+            success: false,
+            message: error.message ||"something went wrong",
+            data:error 
+        }
+      )
+    }
+}
+
+const editProduct = async(req:Request, res:Response)=>{
+ try {
+  const productId = req.params.id;
+  const product = req.body;
+  const result = await productServices.editProductFromDB(productId, product);
+  res.status(200).json(
+    {
+        success: true,
+        message:"product edited  successfully",
+        data:result
+    }
+)
+ } catch (error: any) {
+  res.status(500).json(
+    {
+        success: false,
+        message: error.message ||"something went wrong",
+        data:error 
+    }
+  )
+ }
+}
+
 export const productController = {
       createProduct,
-      getAllProduct
+      getAllProduct,
+      getSearchProduct,
+      editProduct,
+      getSingleProduct
 }

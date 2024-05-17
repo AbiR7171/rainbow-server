@@ -15,11 +15,6 @@ const productSchema = new Schema<TProduct>(
             type: String,
             required: true
         },
-        discount: {
-            type: String,
-            required: false,
-            default: "0"
-        },
         image: {
             type: String,
             required: true
@@ -32,9 +27,6 @@ const productSchema = new Schema<TProduct>(
             type: String,
             required: true,
             default:"0"
-        },
-        isDiscount: {
-            type:Boolean,
         }
     }, {
         timestamps: true
