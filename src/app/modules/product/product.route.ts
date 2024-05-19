@@ -7,6 +7,7 @@ route.post("/add-product", upload.single("image"),productController.createProduc
 route.get("/products",productController.getAllProduct)
 route.get("/search-products",productController.getSearchProduct)
 route.get("/single-product/:id",productController.getSingleProduct)
-route.put("/search-products",productController.editProduct)
+route.put("/edit-product/:id",productController.editProduct)
+route.delete("/delete-product/:id",productController.deleteProduct)
 
 export const productRoute = route;

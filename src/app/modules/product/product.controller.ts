@@ -103,6 +103,7 @@ const editProduct = async(req:Request, res:Response)=>{
     }
 )
  } catch (error: any) {
+  console.log(error);
   res.status(500).json(
     {
         success: false,
@@ -113,10 +114,32 @@ const editProduct = async(req:Request, res:Response)=>{
  }
 }
 
+const deleteProduct = async(req:Request, res:Response)=>{
+    try {
+        const productId = req.params.id;
+        const result =await productServices.deleteProductFromDB(productId);
+        res.status(200).json(
+          {
+              success: true,
+              message:"product Deleted  successfully",
+              data:result
+          })
+    } catch (error:any) {
+      res.status(500).json(
+        {
+            success: false,
+            message: error.message ||"something went wrong",
+            data:error 
+        }
+      )
+    }
+}
+
 export const productController = {
       createProduct,
       getAllProduct,
       getSearchProduct,
       editProduct,
-      getSingleProduct
+      getSingleProduct,
+      deleteProduct
 }
