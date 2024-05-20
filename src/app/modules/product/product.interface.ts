@@ -1,8 +1,10 @@
 export type TProduct = {
     productName: string,
     category: string,
-    price: string,
+    price: Number,
     image: string,
     description : string,
-    sell?: string
+    sell?: number,
+    discount?:string,
+    isDiscount?:boolean
 }
