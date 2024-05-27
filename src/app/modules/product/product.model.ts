@@ -32,7 +32,8 @@ const productSchema = new Schema<TProduct>(
             type:Number,
         },
         isDiscount: {
-            type:Boolean
+            type:Boolean,
+            default:false
         }
     }, {
         timestamps: true
