@@ -14,6 +14,7 @@ const uploadImageToCloudinary = (imageName:string, filePath: string) => {
       { public_id: imageName }, 
       function(error, result) {
         if(error){
+          console.log(error, "=> cloudinary Error");
           reject(error)
         }
         resolve(result);

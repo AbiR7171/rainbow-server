@@ -15,7 +15,7 @@ const createProductIntoDB = async(file:any,product: TProduct)=>{
      return res
 }
 const getAllProductsFromDB = async() =>{
-    const  result = await Product.find();
+    const  result = await Product.find().sort({_id:-1});
     return result
  }
 
@@ -40,6 +40,10 @@ const getAllProductsFromDB = async() =>{
       const result = await Product.deleteOne({_id:id})
       return result
  }
+ const  getFlashDiscountFromDB = async() =>{
+      const result = await Product.find({discount:{$gt:0}})
+      return result
+ }
 
 export  const productServices = {
     createProductIntoDB,
@@ -47,5 +51,8 @@ export  const productServices = {
     getSearchProductFromDB,
     editProductFromDB,
     getSingleProductFromDB,
-    deleteProductFromDB
+    deleteProductFromDB,
+    getFlashDiscountFromDB
 }
+
+

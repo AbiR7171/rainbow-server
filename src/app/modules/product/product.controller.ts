@@ -135,11 +135,32 @@ const deleteProduct = async(req:Request, res:Response)=>{
     }
 }
 
+const getFlashDiscount = async(req:Request, res:Response)=>{
+  try {
+      const result =await productServices.getFlashDiscountFromDB();
+      res.status(200).json(
+        {
+            success: true,
+            message:"Flash discount item find  successfully",
+            data:result
+        })
+  } catch (error:any) {
+    res.status(500).json(
+      {
+          success: false,
+          message: error.message ||"something went wrong",
+          data:error 
+      }
+    )
+  }
+}
+
 export const productController = {
       createProduct,
       getAllProduct,
       getSearchProduct,
       editProduct,
       getSingleProduct,
-      deleteProduct
+      deleteProduct,
+      getFlashDiscount
 }

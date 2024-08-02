@@ -9,5 +9,6 @@ route.get("/search-products",productController.getSearchProduct)
 route.get("/single-product/:id",productController.getSingleProduct)
 route.put("/edit-product/:id",productController.editProduct)
 route.delete("/delete-product/:id",productController.deleteProduct)
+route.get("/flash-discount",productController.getFlashDiscount)
 
 export const productRoute = route;
