@@ -155,6 +155,67 @@ const getFlashDiscount = async(req:Request, res:Response)=>{
   }
 }
 
+const suggestForYouProduct = async(req:Request, res:Response)=>{
+  try {
+      const result =await productServices.suggestForYouProductFromDB();
+      res.status(200).json(
+        {
+            success: true,
+            message:"Flash discount item find  successfully",
+            data:result
+        })
+  } catch (error:any) {
+    res.status(500).json(
+      {
+          success: false,
+          message: error.message ||"something went wrong",
+          data:error 
+      }
+    )
+  }
+}
+const topSellProduct = async(req:Request, res:Response)=>{
+  try {
+      const result =await productServices.topSellProductFromDB();
+      res.status(200).json(
+        {
+            success: true,
+            message:"Flash discount item find  successfully",
+            data:result
+        })
+  } catch (error:any) {
+    res.status(500).json(
+      {
+          success: false,
+          message: error.message ||"something went wrong",
+          data:error 
+      }
+    )
+  }
+}
+
+const handleIsSuggestForU = async(req:Request, res:Response)=>{
+  try {
+      const productId = req.params.id;
+      const result =await productServices.handleIsSuggestForUFromDB(productId);
+      res.status(200).json(
+        {
+            success: true,
+            message:"Suggest For You change successfully",
+            data:result
+        })
+  } catch (error:any) {
+    res.status(500).json(
+      {
+          success: false,
+          message: error.message ||"something went wrong",
+          data:error 
+      }
+    )
+  }
+}
+
+
 export const productController = {
       createProduct,
       getAllProduct,
@@ -162,5 +223,8 @@ export const productController = {
       editProduct,
       getSingleProduct,
       deleteProduct,
-      getFlashDiscount
+      getFlashDiscount,
+      handleIsSuggestForU,
+      suggestForYouProduct,
+      topSellProduct
 }

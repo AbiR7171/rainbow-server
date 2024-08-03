@@ -6,5 +6,6 @@ export type TProduct = {
     description : string,
     sell?: number,
     discount?:number,
-    isDiscount?:boolean
+    isDiscount?:boolean,
+    isSuggestForU?:boolean,
 }

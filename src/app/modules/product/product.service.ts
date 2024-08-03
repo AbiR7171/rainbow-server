@@ -4,7 +4,7 @@ import { Product } from "./product.model";
 
 
 const createProductIntoDB = async(file:any,product: TProduct)=>{
-    const imageName =  `product-image-${product.productName}`
+    const imageName =  `product-image-${product.productName.replace(/\s+/g, '')}`
     const {secure_url}  = await uploadImageToCloudinary(imageName, file.path) as { secure_url: string };
     
     const productData = {
@@ -44,6 +44,23 @@ const getAllProductsFromDB = async() =>{
       const result = await Product.find({discount:{$gt:0}})
       return result
  }
+ const  suggestForYouProductFromDB = async() =>{
+      const result = await Product.find({isSuggestForU:true})
+      return result
+ }
+ const  topSellProductFromDB = async() =>{
+      const result = await Product.find().sort({sell:-1}).limit(8)
+      return result
+ }
+ const handleIsSuggestForUFromDB = async(id:string)=>{
+      const item = await Product.findById(id);
+      if (!item) {
+       throw Error("Item not found");
+      }
+       item.isSuggestForU = !item?.isSuggestForU;
+       const result = await item.save();
+       return result
+ }
 
 export  const productServices = {
     createProductIntoDB,
@@ -52,7 +69,10 @@ export  const productServices = {
     editProductFromDB,
     getSingleProductFromDB,
     deleteProductFromDB,
-    getFlashDiscountFromDB
+    getFlashDiscountFromDB,
+    handleIsSuggestForUFromDB,
+    suggestForYouProductFromDB,
+    topSellProductFromDB
 }
 
 
