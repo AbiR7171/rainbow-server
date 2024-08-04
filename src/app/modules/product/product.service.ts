@@ -48,6 +48,10 @@ const getAllProductsFromDB = async() =>{
       const result = await Product.find({isSuggestForU:true})
       return result
  }
+ const  getProductByCategoryFormDB = async(category:string) =>{
+      const result = await Product.find({category:category})
+      return result
+ }
  const  topSellProductFromDB = async() =>{
       const result = await Product.find().sort({sell:-1}).limit(8)
       return result
@@ -72,7 +76,8 @@ export  const productServices = {
     getFlashDiscountFromDB,
     handleIsSuggestForUFromDB,
     suggestForYouProductFromDB,
-    topSellProductFromDB
+    topSellProductFromDB,
+    getProductByCategoryFormDB
 }
 
 

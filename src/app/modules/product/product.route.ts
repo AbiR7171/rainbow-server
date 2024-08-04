@@ -13,5 +13,6 @@ route.get("/flash-discount",productController.getFlashDiscount)
 route.get("/suggest-product",productController.suggestForYouProduct)
 route.get("/topSell-product",productController.topSellProduct)
 route.patch("/suggestForYou-product/:id",productController.handleIsSuggestForU)
+route.get("/category-product/:category",productController.getProductByCategory)
 
 export const productRoute = route;

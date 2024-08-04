@@ -214,6 +214,27 @@ const handleIsSuggestForU = async(req:Request, res:Response)=>{
     )
   }
 }
+const getProductByCategory = async(req:Request, res:Response)=>{
+  try {
+      const category = req.params.category;
+      console.log(category, "from server")
+      const result =await productServices.getProductByCategoryFormDB(category);
+      res.status(200).json(
+        {
+            success: true,
+            message:"Filter product by category successfully",
+            data:result
+        })
+  } catch (error:any) {
+    res.status(500).json(
+      {
+          success: false,
+          message: error.message ||"something went wrong",
+          data:error 
+      }
+    )
+  }
+}
 
 
 export const productController = {
@@ -226,5 +247,6 @@ export const productController = {
       getFlashDiscount,
       handleIsSuggestForU,
       suggestForYouProduct,
-      topSellProduct
+      topSellProduct,
+      getProductByCategory
 }
