@@ -31,9 +31,11 @@ const createUserIntoDB = async(file:any,user: TUser)=>{
   }
       }
 
-      const getSingleUserFormDB = async(id:string) =>{
+ const getSingleUserFormDB = async(id:string) =>{
+  console.log(id);
           const result = await User.findById({_id:id})
-      }
+          return result
+ }
      
 
 
