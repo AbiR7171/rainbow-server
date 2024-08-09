@@ -23,13 +23,36 @@ const addTOCart = async(req:Request,res:Response) =>{
        )
     }
  }
+
  const getAllAddTOCart = async(req:Request, res:Response)=>{
    try {
     const result  = await cartServices.getAllCartFromDB();
     res.status(200).json(
       {
           success: true,
-          message:"All category find  successfully",
+          message:"User cart find  successfully",
+          data:result
+      }
+  )
+   } catch (error : any) {
+    res.status(500).json(
+        {
+            success: false,
+            message: error.message ||"something went wrong",
+            data:error 
+        }
+      )
+   }
+ }
+ const getSingleUserCart = async(req:Request, res:Response)=>{
+   try {
+    const id = req.params.id;
+    console.log(id);
+    const result  = await cartServices.getSingleUserCartFromDB(id);
+    res.status(200).json(
+      {
+          success: true,
+          message:"User cart find  successfully",
           data:result
       }
   )
@@ -46,5 +69,6 @@ const addTOCart = async(req:Request,res:Response) =>{
 
  export const cartController = {
     addTOCart,
-    getAllAddTOCart
+    getAllAddTOCart,
+    getSingleUserCart
  }

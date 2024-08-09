@@ -1,4 +1,5 @@
 import uploadImageToCloudinary from "../../../utils/uploadImageToCloudinary";
+import { calculateDiscountPrice } from "../../../utils/util";
 import { TProduct } from "./product.interface";
 import { Product } from "./product.model";
 
@@ -6,10 +7,13 @@ import { Product } from "./product.model";
 const createProductIntoDB = async(file:any,product: TProduct)=>{
     const imageName =  `product-image-${product.productName.replace(/\s+/g, '')}`
     const {secure_url}  = await uploadImageToCloudinary(imageName, file.path) as { secure_url: string };
+    const discountedPrice = calculateDiscountPrice(product.price, product.discount as number);
+    console.log(discountedPrice);
     
     const productData = {
        ...product,
-       image: secure_url
+       image: secure_url,
+       discountedPrice
     }
      const res = await Product.create(productData)
      return res

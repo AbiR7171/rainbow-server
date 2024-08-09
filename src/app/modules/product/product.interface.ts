@@ -8,4 +8,6 @@ export type TProduct = {
     discount?:number,
     isDiscount?:boolean,
     isSuggestForU?:boolean,
+    discountedPrice?:number
+
 }

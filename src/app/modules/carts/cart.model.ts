@@ -18,6 +18,9 @@ const cartSchema = new Schema<TCart>(
      quantity:{
         type:Number,
         required:true
+     },
+     totalPrice:{
+      type:Number
      }
      
     }

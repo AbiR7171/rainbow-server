@@ -38,6 +38,9 @@ const productSchema = new Schema<TProduct>(
         isSuggestForU: {
             type:Boolean,
             default:false
+        },
+        discountedPrice: {
+            type:Number
         }
     }, {
         timestamps: true
