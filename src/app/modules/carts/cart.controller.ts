@@ -4,7 +4,6 @@ import { cartServices } from "./cart.servicet";
 const addTOCart = async(req:Request,res:Response) =>{
     try {
      const data = req.body;
-     console.log(data);
      const result = await cartServices.addToCartInToDB(data);
      res.status(200).json(
          {
@@ -47,7 +46,6 @@ const addTOCart = async(req:Request,res:Response) =>{
  const getSingleUserCart = async(req:Request, res:Response)=>{
    try {
     const id = req.params.id;
-    console.log(id);
     const result  = await cartServices.getSingleUserCartFromDB(id);
     res.status(200).json(
       {
@@ -66,9 +64,31 @@ const addTOCart = async(req:Request,res:Response) =>{
       )
    }
  }
+ const handleDeleteProduct = async(req:Request, res:Response)=>{
+   try {
+    const id = req.params.id;
+    const result  = await cartServices.handleDeleteProductFromDB(id);
+    res.status(200).json(
+      {
+          success: true,
+          message:"Product delete from cart  successfully",
+          data:result
+      }
+  )
+   } catch (error : any) {
+    res.status(500).json(
+        {
+            success: false,
+            message: error.message ||"something went wrong",
+            data:error 
+        }
+      )
+   }
+ }
 
  export const cartController = {
     addTOCart,
     getAllAddTOCart,
-    getSingleUserCart
+    getSingleUserCart,
+    handleDeleteProduct
  }

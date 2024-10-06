@@ -27,6 +27,9 @@ const userSchema = new Schema<TUser>(
         },
          role: {
           type: String, enum:["user", "admin"], default: "user" 
+         },
+         brainTreeId: {
+          type: String,unique:true
          }
       },
       {

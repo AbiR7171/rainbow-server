@@ -3,5 +3,6 @@ export type TCart = {
     product: Types.ObjectId,
     user: Types.ObjectId,
     quantity: number,
-    totalPrice:number
+    totalPrice:number,
+    paymentStatus:string
 }

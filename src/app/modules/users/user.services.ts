@@ -32,14 +32,28 @@ const createUserIntoDB = async(file:any,user: TUser)=>{
       }
 
  const getSingleUserFormDB = async(id:string) =>{
-  console.log(id);
+          console.log(id);
           const result = await User.findById({_id:id})
           return result
  }
+ const getSingleUserUsingEmailFormDB = async(email:string) =>{
+          const result = await User.findOne({email:email})
+          return result
+ }
+const getAdminFromDB = async(email:string) =>{
+  const query = {email: email};
+  const user = await User.findOne(query);
+  console.log(user)
+  const result = {admin : user?.role == "admin"};
+  console.log(result, "result from admin")
+  return result
+}
      
 
 
 export const userServices = {
     createUserIntoDB,
-    getSingleUserFormDB
+    getSingleUserFormDB,
+    getAdminFromDB,
+    getSingleUserUsingEmailFormDB
 }

@@ -6,5 +6,6 @@ export type TUser = {
     email: string,
     number: string,
     image?: string,
-    role ? : "user" | "admin"
+    role ? : "user" | "admin",
+    brainTreeId?: string
 }

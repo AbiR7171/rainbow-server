@@ -10,13 +10,16 @@ const getAllCartFromDB = async()=>{
      return result
 }
 const getSingleUserCartFromDB = async(id:string)=>{
-     console.log(id, "from service");
      const result = await Cart.find({user:id}).populate("product");
-     console.log(result, "cart update");
+     return result
+}
+const handleDeleteProductFromDB = async(id:string)=>{
+     const result = await Cart.deleteOne({_id:id});
      return result
 }
 export const cartServices = {
     addToCartInToDB,
     getAllCartFromDB,
-    getSingleUserCartFromDB
+    getSingleUserCartFromDB,
+    handleDeleteProductFromDB
 }

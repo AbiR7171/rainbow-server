@@ -21,6 +21,10 @@ const cartSchema = new Schema<TCart>(
      },
      totalPrice:{
       type:Number
+     },
+     paymentStatus:{
+      type:String,
+      default:"required"
      }
      
     }
